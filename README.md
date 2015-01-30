@@ -1,2 +1,1 @@
-# sd_docs
-Senior Design Documents
+# Senior Design Documents
