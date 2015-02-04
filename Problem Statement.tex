@@ -314,6 +314,9 @@ style=numeric
 \newacronym{gps}{GPS}{Global Positioning System}
 \newacronym{imu}{IMU}{Inertial Measurement Unit}
 \newacronym{vins}{V-INS}{Vision aided Inertial Navigation System}
+\newacronym{fpga}{FPGA}{Field Programmable Gate Array}
+\newacronym{cmos}{CMOS}{Complimentary Metal-Oxide Semiconductor}
+%\newacronym{}{}{}
 
 \newglossaryentry{stereoscopic}{
     name=stereoscopic,
@@ -325,14 +328,14 @@ style=numeric
 }
 \newglossaryentry{bindisp}{
     name={binocular disparity},
-    description={refers to the difference in image location of an object seen by the left and right eyes, resulting from the eyes’ horizontal separation}
+    description={refers to the difference in image location of an object seen by the left and right eyes, resulting from the eyes' horizontal separation}
 }
-\newglossaryentry{}{
-    name={},
-    description={}
+\newglossaryentry{stereopsis}{
+    name=stereopsis,
+    description={refers to the perception of depth and 3-dimensional structure obtained on the basis of visual information deriving from two eyes by individuals with normally developed binocular vision}
 }
 %\newglossaryentry{}{
-%    name={},
+%    name=,
 %    description={}
 %}
 
@@ -428,9 +431,7 @@ style=numeric
 % in the abstract or keywords.
 
 \begin{abstract}
-Monoscopic imaging systems have drawbacks that can severely affect applications that use these solutions. These systems are mostly used in fields involving autonomous control of vehicles and remote control applications. The main issues associated with monoscopic imaging are a lack of depth perception and a narrow field of view. These deficiencies pose a serious problem in fields that use monoscopic imaging because depth perception is essential for being able to accurately control any system. Without depth perception, people and automonous systems must use vague spatial cues from two-dimensional images to attempt to control a system. Unmanned aerial vehicles are forced to fly at middle to high altitudes whether they're being controlled by a human or operating autonomously because monoscopic imaging systems cannot allow unmanned aerial vehicles to safely avoid obstacles that are present at lower altitudes. The limited field of view caused by monoscopic imaging prevents a low altitude unmanned aerial vehicle from see obstacles that still pose a threat to the vehicle's wings.
-
-A solution for dealing with the shortcomings of monoscopic imaging systems is the introduction of another camera to the system. This would create a stereoscopic imaging system. Stereoscopic imaging directly addresses the major shortcomings of a monoscopic system. Similar to a human's eyes, a stereoscopic system provides depth perception. This creates a three-dimensional image for the user, whether it is a human controlling a system or a machine making autonomous decisions based on visual stimuli. A stereoscopic system also provides a much wider field of view than a monoscopic one can. The benefits of using a stereoscopic imaging system make it preferable over any monoscopic system.
+Monoscopic imaging systems have drawbacks that can severely affect applications that use these solutions. These systems are mostly used in fields involving autonomous control of vehicles and remote control applications. The main issues associated with monoscopic imaging are a lack of depth perception and a narrow field of view. These deficiencies pose a serious problem in fields that use monoscopic imaging because depth perception is essential for being able to accurately control any system. Without depth perception, people and automonous systems must use vague spatial cues from two-dimensional images to attempt to control a system. A solution for dealing with the shortcomings of monoscopic imaging systems is the introduction of another camera to the system. This would create a stereoscopic imaging system. Stereoscopic imaging directly addresses the major shortcomings of a monoscopic system. Similar to a human's eyes, a stereoscopic system provides depth perception. This creates a three-dimensional image for the user, whether it is a human controlling a system or a machine making autonomous decisions based on visual stimuli. A stereoscopic system also provides a much wider field of view than a monoscopic one can. The benefits of using a stereoscopic imaging system make it preferable over any monoscopic system.
 \end{abstract}
 
 % Note that keywords are not normally used for peerreview papers.
@@ -611,16 +612,14 @@ In human vision systems where the use of cameras augments a process or procedure
 
 Based upon the evidence, stereoscopic vision is an improvement over monoscopic vision.  For a system where the display of a remote environment is necessary, the use of a stereoscopic capture and display would be more efficient, accurate, and provide better results than a monoscopic system.
 
-
-
 \section{Proposal}
 To address the limitations of a remotely operated robotic system utilizing a monoscopic image capture and two dimensional displays, the team is proposing to design and build a remotely operated robotic manipulation device that integrates stereoscopic vision.
 
-The system that is proposed would consist of a custom hardware design to capture stereoscopic image data through low-cost CMOS cameras and transmit it to a remote head-mount stereoscopic display.  To provide a more natural interaction and response, the head-mount display would integrate motion tracking to reposition the remote cameras.  Additionally, a remotely operated robotic control system would be utilized to demonstrate the effectiveness of the stereoscopic vision system.
+The system that is proposed would consist of a custom hardware design to capture stereoscopic image data using two independent cameras and transmit it to a remote head-mount stereoscopic display.  To provide a more natural interaction and response, the head-mount display would integrate motion tracking to reposition the remote cameras.  Additionally, a remotely operated robotic control system would be utilized to demonstrate the effectiveness of the stereoscopic vision system.
 
-At a high-level, the implementation is expected to be completed using multiple CMOS camera sensors for capturing image data, FPGAs for processing image data and forming high-speed data transfer between the stereoscopic image capture system and stereoscopic display, along with high-resolution LCD displays for displaying the stereoscopic image data.  Additionally, microcontrollers would be utilized to control any robotic or mechanical system in conjunction with the head-mount display and camera operation.
+At a high-level, the implementation is expected to be developed using multiple CMOS camera sensors for capturing image data, FPGAs for processing image data and forming high-speed data transfer between the stereoscopic image capture system and stereoscopic display, along with high-resolution LCD displays for displaying the stereoscopic image data.  Additionally, microcontrollers would be utilized to control any robotic or mechanical system in conjunction with the motion tracking head-mount display and camera repositioning.
 
-If time and resources permitted, additional enhancements to the system could further improve the experience, such as implementing super-resolution image processing to improve the total resolution of the image data, object recognition and tracking, and additional feedback mechanisms.  
+If time and resources permitted, additional enhancements to the system could further improve the experience, such as implementing super-resolution image processing to improve the total resolution of the image data, object recognition and tracking, and additional feedback mechanisms to provide a more natural physical response to the end user.  Potential extensions to the implementation could include true remote operation over a local or wide area network.
 
 \section{Conclusion}
 Monoscopic imagining techniques have quite a few drawbacks such as difficulty in determining the depth or distance a object may be, as well as may create a distorted assessment of the objects size and shape. While this may appear narrow in scope, there are implications in full machine vision systems such as with unmanned aerial vehicles, as well as fields that utilize machine assisted vision, such as in medical procedures.  Furthermore, these implications are felt in a number of other fields that affect the safety and health of individuals, in the operational costs of various industries, and in the use of technology developed to otherwise facilitate tasks in way that are not possible without it.
@@ -678,7 +677,11 @@ Researched evidence supports the effectiveness of replacing monoscopic vision wi
 
 
 % glossary section
+
+% Add all defined terms.
 \glsaddall
+% Change the glossary style to have definitions be put on
+% a new line to avoid a definition overlapping a term.
 \glossarystyle{altlist}
 \printglossaries
 
