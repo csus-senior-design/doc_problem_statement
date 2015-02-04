@@ -294,6 +294,37 @@ style=numeric
 
 
 
+% *** GLOSSARY PACKAGE ***
+%
+\usepackage[acronym, nonumberlist]{glossaries}
+
+% This section defines "indexspace", which is used in IEEEtran.cls but it
+% is not defined there.
+\makeatletter
+\newcommand\indexspace{\par \vskip 10\p@ \@plus5\p@ \@minus3\p@\relax}
+\makeatother
+
+\makeglossaries
+
+%\setlength{\glsdescwidth}{0.1\linewidth}
+
+\newacronym{2d}{2D}{2-dimensional}
+\newacronym{3d}{3D}{3-dimensional}
+\newacronym{uav}{UAV}{Unmanned Aerial Vehicle}
+\newacronym{gps}{GPS}{Global Positioning System}
+\newacronym{imu}{IMU}{Inertial Measurement Unit}
+\newacronym{vins}{V-INS}{Vision aided Inertial Navigation System}
+
+\newglossaryentry{stereoscopic}{
+    name=stereoscopic,
+    description={relating to or denoting a process by which two photographs of the same object taken at slightly different angles are viewed together, creating an impression of depth and solidity}
+}
+\newglossaryentry{monoscopic}{
+    name=monoscopic,
+    description={relating to or denoting a process by which a single photograph of an object is used for imaging}
+}
+
+
 % *** Do not adjust lengths that control margins, column widths, etc. ***
 % *** Do not use packages that alter fonts (such as pslatex).         ***
 % There should be no need to do such things with IEEEtran.cls V1.6 and later.
@@ -313,7 +344,8 @@ style=numeric
 % not capitalized unless they are the first or last word of the title.
 % Linebreaks \\ can be used within to get better formatting as desired.
 % Do not put math or special symbols in the title.
-\title{Problems with Two Dimensional Vision Systems}
+\title{Limitations of Monoscopic Vision Systems in Autonomous and Remotely Operated Applications}
+
 %
 %
 % author names and IEEE memberships
@@ -367,21 +399,14 @@ style=numeric
 % You can use \ifCLASSOPTIONpeerreview for conditional compilation here if
 % you desire.
 
-
-
-
 % If you want to put a publisher's ID mark on the page you can do it like
 % this:
 %\IEEEpubid{0000--0000/00\$00.00~\copyright~2014 IEEE}
 % Remember, if you use this you must call \IEEEpubidadjcol in the second
 % column for its text to clear the IEEEpubid mark.
 
-
-
 % use for special paper notices
 %\IEEEspecialpapernotice{(Invited Paper)}
-
-
 
 
 % make the title area
@@ -390,16 +415,14 @@ style=numeric
 % As a general rule, do not put math, special symbols or citations
 % in the abstract or keywords.
 \begin{abstract}
-The abstract goes here.
+
+This report discusses the limitations of monoscopic display systems used in autonomous and remotely operated applications, along with the impact of these limitations, and how they affect a spectrum of different technology fields. The use of stereoscopic vision is suggested as a solution to these limitations of monoscopic display systems, along with a proposal to implement a steroscopic system to counter the limitation of monoscopic vision.
 \end{abstract}
 
 % Note that keywords are not normally used for peerreview papers.
 \begin{IEEEkeywords}
-2D, 3D, stereoscopic, monocular
+stereoscopic image capture, stereoscopic displays, stereoscopic vision, display technology, machine vision, machine assisted vision, monoscopic vision, 2D, 3D, robotics
 \end{IEEEkeywords}
-
-
-
 
 
 
@@ -415,7 +438,7 @@ The abstract goes here.
 
 
 
-\section{Introduction}
+%\section{Introduction}
 % The very first letter is a 2 line initial drop letter followed
 % by the rest of the first word in caps.
 % 
@@ -431,32 +454,17 @@ The abstract goes here.
 % 
 % Here we have the typical use of a "T" for an initial drop letter
 % and "HIS" in caps to complete the first word.
-\IEEEPARstart{T}{his} demo file is intended to serve as a ``starter file''
-for IEEE journal papers produced under \LaTeX\ using
-IEEEtran.cls version 1.8a and later.
-% You must have at least 2 lines in the paragraph with the drop letter
-% (should never be an issue)
-I wish you the best of success.
+%\hfill mds
+%\hfill September 17, 2014
 
-% just a high-level statement from an e-mail
-2D vision is limited in the ability to provide accurate depth and object tracking for use in both machine vision systems and first-person vision systems.  3D stereoscopic vision systems could improve depth and object tracking for use in robotics systems such as remote-control manipulation, robotic assisted medical procedures, and also for first-person vision systems in unmanned vehicles.
-
-% sample citation; would actually need to be put in context
-According to Wanschitz, use of stereoscopic vision through independent optical channels improved precision in dental implant procedures.\cite{wanschitz}
-
-
-\hfill mds
- 
-\hfill September 17, 2014
-
-\subsection{Subsection Heading Here}
-Subsection text here.
+%\subsection{Subsection Heading Here}
+%Subsection text here.
 
 % needed in second column of first page if using \IEEEpubid
 %\IEEEpubidadjcol
 
-\subsubsection{Subsubsection Heading Here}
-Subsubsection text here.
+%\subsubsection{Subsubsection Heading Here}
+%Subsubsection text here.
 
 
 % An example of a floating figure using the graphicx package.
@@ -554,34 +562,53 @@ Subsubsection text here.
 % \fnbelowfloat command of the stfloats package.
 
 
+
+\section{Introduction}
+\IEEEPARstart{T}{he} use of machine vision and machine assisted human vision is increasingly utilized in many aspects of everyday life.  From industrial, military, business, medical, and entertainment applications, the integration of machine vision and interaction with physical objects is more common than ever.  More importantly, the integration of machine vision systems with remotely operated machinery, robotics, and vehicles is a crucial innovation that provides safety for people from hazardous environments, the ability to allow a specialist to offer expertise from a distant location, as well as bridge real and virtual environments and facilitate communication and interaction from remote locations.
+
+However, while the integration of machine vision and remote systems operation is possible and occurring today, it is no substitute for first-person operation.  Despite the vast technological innovations in vision capture systems, two-dimensional, or gls{monoscopic} displays are most prevalent, and this type of display introduces errors and limits the abilities of those using such a system.
+
+Due to the limitations of monoscopic vision, the use of stereoscopic vision capture and display is suggested as a solution.  Additionally, the implementation of such as system is proposed to be developed for the EEE/CPE Senior Design Project at California State University, Sacramento for the duration of the Spring 2015 and Fall 2015 Semesters.
+
+
 \section{Societal Problem}
-Most imaging technology used throughout society today is monocular, meaning it is a single camera system that provides an image to an end user. Single camera systems have some fundamental limits which constrain the system's functionality. Monocular systems do not provide depth perception to a human that is controlling the system, or to a machine that is processing the incoming visual data. This means that the end user of the system, be it man or machine, has to deal with controlling something without access to the third spatial dimension. Obviously this creates a problem for accurately controlling any sort of mechanical system.
+Most imaging technology used throughout society today is monoscopic, meaning it is a single camera system that provides an image to an end user. Single camera systems have some fundamental limits which constrain the system's functionality. Monoscopic image capture and display systems do not provide depth perception to a human that is using the system, or to a machine that is processing the incoming visual data. This means that the end user of the system, be it man or machine, has to deal with controlling something without access to the third spatial dimension. Obviously this creates a problem for accurately controlling any sort of mechanical system since having three dimensional vision allows the end user to judge depth much more accurately. Another problem posed by monoscopic vision is that the field of view is a much smaller angle than that of a stereoscopic imaging system like human eyes. This can easily be confirmed by comparing the field of view an individual has with both eyes open to the field of view with just one eye open.
+
+Monoscopic imaging systems are on most currently deployed UAVs (Unmanned Aerial Vehicles), remotely operated aerial vehicles, and other remotely operated robotic systems. Due to the limitations of monoscopic images, UAVuse a GPS (Global Positioning System) and IMUs (Inertial Measurement Unit) so the vehicle can fly autonomously \cite{sanfourche}. These sensing systems only allow autonomous flight at middle to high altitudes since they cannot account for obstacles at lower altitudes \cite{sanfourche}. Since monoscopic imaging systems do not provide three dimensional views, both autonomous and remote controlled flight are not possible to do safely at low altitudes. Since autonomous flight with UAVs is so heavily dependent on a GPS, conditions where a GPS is not available pose a serious problem for UAVs \cite{chowdhary}. One of the possible solutions for this problem is to use a V-INS (Vision aided Inertial Navigation System), but these systems suffer from being computationally intensive \cite{chowdhary}. Even if monoscopic imaging could be used to accurately judge relative distances between a UAV and objects near it, the limited field of view caused by a monoscopic system would not allow the UAV to see objects that could still cause collisions with the craft.
+
+Another field that is affected by issues with monoscopic imaging is medicine. Surgeons using a monoscopic system to perform operations on patients are forced to control robotic arms with no sense of depth. This is an application where accuracy is essential for avoiding any collateral damage to the patient. Research has shown significant differences in the performance of surgeons between using a monoscopic system and a stereoscopic system \cite{munz}. Surgeons using the monoscopic system required more movements to complete tasks than the surgeons using the stereoscopic system, and the surgeons' movements using the monoscopic system were less accurate than the movements of the surgeons using the stereoscopic system \cite{munz}.
+
 
 \section{Impact}
-2D imaging technology is becoming less popular, and are being replaced by 3D stereoscopic imaging technology. 3D stereoscopic vision systems are becoming part of our everyday life, and our society is becoming more dependent on these systems for various applications including remote surveillance, medical, and entertainment purposes. As the 2D vision technology is gradually starting to become obsolete, 3D imaging on the other hand is becoming more prevalent, and therefore replacing 2D imaging technique.  This is in part due to the technological advances in this decade.  
- 
-Although, 3D stereoscopic imaging is not relatively new since it has been a topic of research in the past few decades; however, it was not well received by people due to a lack of quality. This is because the software as well as hardware resources were limited, and thus was an obstacle for engineers. Recently, stereoscopic imaging is gaining ground among people, as performance and memory are not as big of an issue nowadays. With the hardware and software resources available for engineers and a lack of interest by public for 2D and various other methods of imaging, the electronic industry is relying on 3D stereoscopic vision, and therefore more and more products are launched into the market that depend on stereoscopic vision. 2D vision systems on the other hand are problematic and it has undesirable effects that can have a negative impact in various fields and applications.
- 
-The most profound impact of 2D vision is that it can be inaccurate and cause errors. This is because a lack of depth and reduced object detection can produce incorrect results in performing tasks where full machine vision or machine assisted human vision is used.  Depth and vision are affected both to a great extent by the binocular matching, which is a “process that finds which parts of the left and right eye’s images correspond to the same source in the visual scene”. Another factor which has an influences on the depth of perception is binocular disparity.  The concept of binocular disparity refers to the slight difference in position of a visual image as seen by the right and left eye. This is because the right and left eye view objects from different angles, and thus would cause a little visual disparity. Stereoscopic depth perception works when each eye takes the visual information that it receives, and sends it to the brain to be united into one picture, where the slight difference of the images will add the illusion and perception of depth. 2D vision lacks both binocular matching and disparity, and thus it has no depth, which may lead to erroneous and undependable results.
+2D imaging technology is becoming less popular, and it is being replaced by stereoscopic imaging technology, which can provide three dimensional images. Stereoscopic vision systems are becoming part of our everyday life, and our society is becoming more dependent on these systems for various applications including remote surveillance, medical, and entertainment purposes. As the 2D vision technology is gradually starting to become obsolete, 3D imaging on the other hand is becoming more prevalent, and therefore replacing 2D imaging techniques.  This is in part due to the technological advances in this decade.  
 
-2D stereoscopic vision can be of disadvantage in the field of intelligent systems including robots and remote operated vehicles. Intelligent systems such as robots will require precision and accurate results when capturing data. Robots and intelligent systems capture data and based on the data that is received, then an action of some sort would be taken by the robot depending on the application. However, since the 2D data that will be received may be inaccurate, then an incorrect course of action will be taken, which can be of great concern when dealing with precision and accuracy.
+Although, stereoscopic imaging is not relatively new since it has been a topic of research in the past few decades; however, it was not well received by people due to a lack of quality\cite{bryant}. This is because the software as well as hardware resources were limited, and thus was an obstacle for engineers. Recently, stereoscopic imaging is gaining ground among people, as performance and memory are not as big of an concern nowadays. With the hardware and software resources available for engineers and a lack of interest by the public for 2D and various other methods of imaging, the electronic industry is relying on 3D stereoscopic vision, and therefore more products are launched into the market that depend on stereoscopic vision \cite{bryant}. 2D vision systems on the other hand have drawbacks that can negatively effect various fields and certain applications.
 
+The most profound impact of 2D vision is that it can be inaccurate and cause errors. This is because a lack of depth and reduced object detection can produce incorrect results in performing tasks where full machine vision or machine assisted human vision is used.  Depth and vision are affected both to a great extent by the binocular matching, which is a process that finds which parts of the left and right eye’s images correspond to the same source in the visual scene. Another factor which has an influences on the depth of perception is binocular disparity.  The concept of binocular disparity refers to the slight difference in position of a visual image as seen by the right and left eye \cite{naquet}. The reason is because the right and left eye view objects from different angles, and thus would cause a little visual disparity. Stereoscopic depth perception works when each eye takes the visual information that it receives, and sends it to the brain to be united into one picture, where the slight difference of the images will add the illusion and perception of depth \cite{naquet}. 2D vision lacks both binocular matching and disparity, and thus it has no depth, which may lead to erroneous and undependable results.
 
-
+Monoscopic vision can be a disadvantage in the field of intelligent systems including robots and remote operated vehicles. Intelligent systems such as robots will require precision and accurate results when capturing data. Robots and intelligent systems capture data and based on the data that is received, then an action of some sort would be taken by the robot depending on the application. However, since the 2D data that will be received may be inaccurate because, by using monocular vision the distance of the object cannot as accurately be found \cite{segal}. This could cause an incorrect course of action to be taken, which can be of great concern when dealing with precision and accuracy. Another issue that occurs from monoscopic vision is that with the lack of depth perception a misrepresentation of a objects depth or width can change how we perceive it and provide a misconception of the objects size or shape of the object \cite{pollock}. The concern of exocentric distance perception in identifying and navigation with a monoscopic camera in medical devices could cause concern in specific medical devices such as laparoscopic devices are used in surgeries to navigate and identify particular areas in the human body \cite{pollock}. 
 
 \section{Solution}
-According to Segal, using stereoscopic vision yields faster target tracking, increased robustness to noise and field-of-view limits, and reduced fuel consumption compared with monocular vision-based attitude tracking.\cite{segal}
+As a result of the limitations of monoscopic vision, researchers have investigated the use of both simulated and true stereoscopic vision as an alternative solution when a vision system is necessary.  Consistently, studies have shown that in a variety of scenarios ranging from complete machine vision to human vision systems, the use of true stereoscopic vision provides better results than when monoscopic vision is utilized.
 
+In an article discussing the tracking of objects in orbit in space, the use of stereoscopic imaging in a machine-vision system yielded faster target tracking and increased robustness to field-of-view limits noise compared with monoscopic vision-based attitude tracking \cite{segal}. Additionally, these improvements had a fringe benefit of reduced fuel consumption in the systems utilizing the stereoscopic vision.  This is specifically attributed to the ability to accurately implement a model of the object being tracked without any ambiguity in the relative range since the angular acceleration can be measured using the stereoscopic vision.
+
+In human vision systems where the use of cameras augments a process or procedure by a person, research has shown that the use of stereoscopic vision improves the performance and results compared to monoscopic vision.  In a clinical study of using cameras to assist in dental implant procedures, the use of stereoscopic vision through independent optical channels improved precision in dental implant procedures compared to non-stereoscopic vision \cite{wanschitz}.  In another study utilizing the Da Vinci robotic assisted surgical system, researchers aimed to objectively assess whether stereoscopic vision improved the performance over monoscopic vision. The results of the study indicated that for all tasks and parameters there were significant improvements \cite{munz}. Additionally, a fewer errors were encountered while using the stereoscopic mode as compared to the standard two-dimensional image \cite{munz}.  Furthermore, in a paper published specifically to address the use of stereoscopic imaging in medical procedures, the concluding remarks indicate that stereoscopic vision offers significant clinical improvements for many aspects of medicine over monoscopic vision \cite{held}.  Specifically, in diagnostics, training, and remote surgery, the article identifies shortened task-completion times and reduced error rates due to enhanced shape perception in the absence of other visual cues.
+
+Based upon the evidence, stereoscopic vision is an improvement over monoscopic vision.  For a system where the display of a remote environment is necessary, the use of a stereoscopic capture and display would be more efficient, accurate, and provide better results than a monoscopic system
 
 \section{Proposal}
-To implement 
+To address the limitations of a remotely operated robotic system utilizing a monoscopic display, the team is proposing to design and build a remotely operated robotic manipulation device that integrates stereoscopic vision.
+
+The system that is proposed would consist of a custom hardware design to capture stereoscopic image data through low-cost CMOS cameras and transmit it to a remote head-mount stereoscopic display.  To provide a more natural interaction and response, the head-mount display would integrate motion tracking to reposition the remote cameras.  Additionally, a remotely operated robotic control system would be utilized to demonstrate the effectiveness of the stereoscopic vision system.
+
+If time and resources permitted, additional enhancements to the system could further improve the experience, such as implementing super-resolution image processing to improve the total resolution of the image data, object recognition and tracking, and additional feedback mechanisms.
 
 
 \section{Conclusion}
-The conclusion goes here.
+While the problems and limitations of monoscopic vision may seem narrow in scope, the implications are felt in a number of fields that affect the safety and health of individuals, operational costs of various industries, and limit the use of technology developed to otherwise facilitate tasks in ways that are not possible without it.
 
-
-
+Researched evidence supports the effectiveness of the suggested solution of replacing monoscopic vision with stereoscopic vision, and is believed to be attainable with available technology and tools.  The proposed implementation is reasonable in scope for the time frame spanning the Spring 2015 and Fall 2015 semesters at California State University, Sacramento, and given the abilities of the team members.
 
 
 % if have a single appendix:
@@ -631,6 +658,13 @@ The conclusion goes here.
 %\IEEEtriggeratref{8}
 % The "triggered" command can be changed if desired:
 %\IEEEtriggercmd{\enlargethispage{-5in}}
+
+
+% glossary section
+\glsaddall
+\glossarystyle{altlist}
+\printglossaries
+
 
 % references section
 
